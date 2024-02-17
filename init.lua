@@ -42,6 +42,7 @@ P.S. You can delete this when you're done too. It's your config now :)
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+vim.opt.tabstop = 4
 
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
@@ -145,10 +146,9 @@ require('lazy').setup({
     'catppuccin/nvim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'catppuccin'
+      --vim.cmd.colorscheme 'catppuccin'
     end,
   },
-
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
@@ -156,7 +156,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'catppuccin',
+        theme = 'rose-pine',
         component_separators = '|',
         section_separators = '',
       },
@@ -277,11 +277,23 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.keymap.set("n", "<C-u>", "<C-u>-zz", { desc = "Center cursor after moving half page up" })
 vim.keymap.set("n", "<C-d>", "<C-d>-zz", { desc = "Center cursor after moving half page down" })
 
+-- [CUSTOM] Move code blocks vertically
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- [CUSTOM] Maintain cursor position on line append
+vim.keymap.set("n", "J", "mzJ'z")
+
 -- [CUSTOM] Keep visual mode after shifts
 vim.keymap.set("v", ">", ">gv", { desc = "Keep visual mode after shifts", noremap = true })
+vim.keymap.set("v", "<", "<gv", { desc = "Keep visual mode after shifts", noremap = true })
 
 -- [CUSTOM] Yank to void register
 vim.keymap.set("x", "<leader>p", "\"_dP", { desc = "Yank to void register" })
+
+-- [CUSTOM] Scroll off
+vim.opt.scrolloff = 8
+
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -335,11 +347,7 @@ require('nvim-treesitter.configs').setup {
   ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-<<<<<<< HEAD
   auto_install = true,
-=======
-  auto_install = false,
->>>>>>> b24283707073b2ef442942b655a802718c91b5a1
   autotag = {
     enable = true,
     enable_rename = true,
