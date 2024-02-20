@@ -155,11 +155,23 @@ require('lazy').setup({
     -- See `:help lualine.txt`
     opts = {
       options = {
-        icons_enabled = false,
+        icons_enabled = true,
         theme = 'rose-pine',
         component_separators = '|',
         section_separators = '',
       },
+      sections = {
+        lualine_c = {
+          {
+            "buffers",
+            hide_modified_status = true,
+            mode = 4,
+            symbols = {
+              modified = "●",
+            },
+          },
+        },
+      }
     },
   },
 
@@ -293,6 +305,22 @@ vim.keymap.set("x", "<leader>p", "\"_dP", { desc = "Yank to void register" })
 
 -- [CUSTOM] Scroll off
 vim.opt.scrolloff = 8
+
+-- [CUSTOM] Format
+vim.keymap.set("n", "<leader>cf", ":Format<enter>", { desc = "Format current buffer" })
+
+-- Toggle Neotree
+vim.keymap.set("n", "<leader>tb", ":Neotree<enter>", { desc = "Toggle Neotree" })
+vim.keymap.set("n", "<leader>th", ":cd %:h<enter>", { desc = "Change current working directory to current directory" })
+
+-- Buffer stuff
+vim.keymap.set("n", "<leader>j", ":bnext<enter>", { desc = "Next buffer" })
+vim.keymap.set("n", "<leader>k", ":bprev<enter>", { desc = "Prev buffer" })
+vim.keymap.set("n", "<leader>bd", ":bdelete<enter>", { desc = "Delete buffer" })
+
+-- Splits
+
+-- END OF [CUSTOM]
 
 
 -- [[ Highlight on yank ]]

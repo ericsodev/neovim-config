@@ -1,5 +1,6 @@
 return {
-  "rosepine/neovim",
+  "rose-pine/neovim",
+  name = "rose-pine",
   -- Optional dependency
   config = function()
     require("rose-pine").setup({ dark_variant = "main" })
