@@ -666,6 +666,26 @@ require("lazy").setup({
 					end
 					return "make install_jsregexp"
 				end)(),
+				config = function()
+					local types = require("luasnip.util.types")
+
+					require("luasnip.loaders.from_vscode").lazy_load()
+
+					require("luasnip").setup({
+						history = true,
+						delete_check_events = "TextChanged",
+						-- Display a cursor-like placeholder in unvisited nodes
+						-- of the snippet.
+						ext_opts = {
+							[types.insertNode] = {
+								unvisited = {
+									virt_text = { { "|", "Conceal" } },
+									virt_text_pos = "inline",
+								},
+							},
+						},
+					})
+				end,
 			},
 			"saadparwaiz1/cmp_luasnip",
 
@@ -686,7 +706,6 @@ require("lazy").setup({
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
 			luasnip.config.setup({})
-			require("luasnip.loaders.from_vscode").lazy_load()
 
 			cmp.setup({
 				snippet = {
@@ -872,7 +891,7 @@ require("lazy").setup({
 				-- Autoinstall languages that are not installed
 				auto_install = true,
 				highlight = { enable = true },
-				indent = { enable = true },
+				indent = { enable = false },
 			})
 
 			-- There are additional nvim-treesitter modules that you can use to interact
