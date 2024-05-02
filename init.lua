@@ -646,6 +646,10 @@ require("lazy").setup({
 				-- is found.
 				javascript = { { "prettierd", "prettier" } },
 				typescriptreact = { "prettier" },
+				javascriptreact = { "prettier" },
+				html = { "prettier" },
+				css = { "prettier" },
+				typescript = { "prettier" },
 			},
 		},
 	},
