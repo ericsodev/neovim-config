@@ -376,10 +376,33 @@ require("lazy").setup({
 				--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
 				--   },
 				-- },
-				-- pickers = {}
+				defaults = {
+					theme = "center",
+					sorting_strategy = "ascending",
+					layout_config = {
+						horizontal = {
+							prompt_position = "top",
+							preview_width = 0.5,
+							width = 0.9,
+						},
+					},
+				},
 				extensions = {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown(),
+					},
+					file_browser = {
+						--theme = "dropdown",
+						-- disables netrw and use telescope-file-browser in its place
+						hijack_netrw = true,
+						mappings = {
+							["i"] = {
+								-- your custom insert mode mappings
+							},
+							["n"] = {
+								-- your custom normal mode mappings
+							},
+						},
 					},
 				},
 			})
@@ -657,6 +680,7 @@ require("lazy").setup({
 				html = { "prettier" },
 				css = { "prettier" },
 				typescript = { "prettier" },
+				svelte = { "prettierd", "prettier" },
 			},
 		},
 	},
@@ -903,7 +927,7 @@ require("lazy").setup({
 				-- Autoinstall languages that are not installed
 				auto_install = true,
 				highlight = { enable = true },
-				indent = { enable = true },
+				indent = { enable = false },
 			})
 
 			-- There are additional nvim-treesitter modules that you can use to interact
