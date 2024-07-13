@@ -680,7 +680,7 @@ require("lazy").setup({
 				html = { "prettier" },
 				css = { "prettier" },
 				typescript = { "prettier" },
-				svelte = { "prettierd", "prettier" },
+				svelte = { "prettier" },
 			},
 		},
 	},
@@ -923,6 +923,7 @@ require("lazy").setup({
 					"typescript",
 					"python",
 					"rust",
+					"svelte",
 				},
 				-- Autoinstall languages that are not installed
 				auto_install = true,
