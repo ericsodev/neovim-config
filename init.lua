@@ -598,6 +598,7 @@ require("lazy").setup({
 				-- But for many setups, the LSP (`tsserver`) will work just fine
 				-- tsserver = {},
 				--
+				svelte = {},
 
 				lua_ls = {
 					-- cmd = {...},
@@ -639,6 +640,7 @@ require("lazy").setup({
 				"stylua", -- Used to format lua code
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+			require("lspconfig").svelte.setup({})
 
 			require("mason-lspconfig").setup({
 				handlers = {
@@ -933,7 +935,9 @@ require("lazy").setup({
 					"markdown",
 					"vim",
 					"vimdoc",
+					"javascript",
 					"typescript",
+					"tsx",
 					"python",
 					"rust",
 					"svelte",
