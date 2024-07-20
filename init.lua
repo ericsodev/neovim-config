@@ -210,7 +210,7 @@ vim.keymap.set("v", "<", "<gv", { desc = "Keep visual mode after shifts", norema
 -- [CUSTOM] Yank to void register
 vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Yank to void register" })
 
-vim.keymap.set("n", "<leader>pc", ":Telescope colorscheme", { desc = "Search colorschemes" })
+vim.keymap.set("n", "<leader>pc", ":Telescope colorscheme<Enter>", { desc = "Search colorschemes" })
 
 -- END OF CUSTOM
 
