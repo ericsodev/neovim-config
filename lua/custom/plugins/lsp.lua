@@ -10,9 +10,14 @@ return { -- LSP Configuration & Plugins
 		-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
 		{ "j-hui/fidget.nvim", opts = {} },
 	},
-	opts = {
-		inlay_hints = { enabled = true },
-	},
+	on_attach = function()
+		local function toggleInlayHints()
+			if client.server_capabilities.inlayHintProvider then
+				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+			end
+		end
+		vim.keymap.set("n", "<leader>li", toggleInlayHints, { desc = "Toggle [L]SP [I]nlay hints" })
+	end,
 	config = function()
 		-- Brief Aside: **What is LSP?**
 		--
@@ -117,8 +122,6 @@ return { -- LSP Configuration & Plugins
 			end,
 		})
 
-		local onA
-
 		-- LSP servers and clients are able to communicate to each other what features they support.
 		--  By default, Neovim doesn't support everything that is in the LSP Specification.
 		--  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
@@ -149,7 +152,6 @@ return { -- LSP Configuration & Plugins
 			-- tsserver = {},
 			--
 			svelte = {},
-
 			lua_ls = {
 				-- cmd = {...},
 				-- filetypes { ...},

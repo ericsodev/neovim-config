@@ -11,12 +11,18 @@ return {
 					vim.lsp.buf.code_action,
 					{ buffer = bufnr, desc = "TS Code [A]ctions" }
 				)
+				local function toggleInlayHints()
+					if client.server_capabilities.inlayHintProvider then
+						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+					end
+				end
+				vim.keymap.set("n", "<leader>li", toggleInlayHints, { desc = "Toggle [L]SP [I]nlay hints" })
 			end,
 			settings = {
 				-- spawn additional tsserver instance to calculate diagnostics on it
 				separate_diagnostic_server = true,
 				-- "change"|"insert_leave" determine when the client asks the server about diagnostic
-				publish_diagnostic_on = "insert_leave",
+				publish_diagnostic_on = "change",
 				-- array of strings("fix_all"|"add_missing_imports"|"remove_unused"|
 				-- "remove_unused_imports"|"organize_imports") -- or string "all"
 				-- to include all supported code actions
@@ -39,7 +45,10 @@ return {
 				tsserver_max_memory = "auto",
 				-- described below
 				tsserver_format_options = {},
-				tsserver_file_preferences = {},
+				tsserver_file_preferences = {
+					includeInlayParameterNameHints = "all",
+					includeCompletionsForModuleExports = false,
+				},
 				-- locale of all tsserver messages, supported locales you can find here:
 				-- https://github.com/microsoft/TypeScript/blob/3c221fc086be52b19801f6e8d82596d04607ede6/src/compiler/utilitiesPublic.ts#L620
 				tsserver_locale = "en",
