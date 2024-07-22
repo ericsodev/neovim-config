@@ -14,10 +14,11 @@ return { -- Autoformat
 			-- You can use a sub-list to tell conform to run *until* a formatter
 			-- is found.
 			javascript = { { "prettierd", "prettier" } },
-			typescriptreact = { "prettier" },
-			javascriptreact = { "prettier" },
+			typescriptreact = { { "prettierd", "prettier" } },
+			javascriptreact = { { "prettierd", "prettier" } },
 			html = { "prettier" },
 			css = { "prettier" },
+			scss = { "prettier" },
 			typescript = { "prettierd" },
 			svelte = { "prettierd" },
 		},
