@@ -387,7 +387,22 @@ require("lazy").setup({
 					h6 = "foam",
 				},
 			})
-			vim.cmd.colorscheme("rose-pine-main")
+		end,
+	},
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000,
+		config = function()
+			require("catppuccin").setup({
+				color_overrides = {
+					all = {
+						base = "#000000",
+						mantle = "#000000",
+						crust = "#000000",
+					},
+				},
+			})
 		end,
 	},
 
@@ -442,3 +457,4 @@ require("lazy").setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+vim.cmd.colorscheme("catppuccin")
