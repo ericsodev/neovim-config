@@ -398,7 +398,7 @@ require("lazy").setup({
 				color_overrides = {
 					all = {
 						base = "#000000",
-						mantle = "#000000",
+						mantle = "#090909",
 						crust = "#000000",
 					},
 				},
