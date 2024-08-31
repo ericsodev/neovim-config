@@ -25,7 +25,7 @@ return {
 				null_ls.builtins.formatting.stylua,
 
 				-- typescript
-				null_ls.builtins.formatting.prettierd.with({}),
+				-- null_ls.builtins.formatting.prettierd.with({}),
 
 				-- python
 				null_ls.builtins.diagnostics.mypy.with({
