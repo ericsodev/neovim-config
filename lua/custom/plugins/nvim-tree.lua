@@ -8,7 +8,8 @@ return {
 			api.config.mappings.default_on_attach(bufnr)
 
 			-- mappings
-			vim.keymap.set("n", "<Leader>t", ":NvimTreeToggle<Enter>")
+			vim.keymap.set("n", "<Leader>t", ":NvimTreeToggle<Enter>", { desc = "Toggle NvimTree" })
+			vim.keymap.set("n", "<Leader>nt", ":NvimTreeToggle<Enter>", { desc = "Toggle NvimTree" })
 
 			-- copy pasta to stage and unstage files
 
@@ -19,14 +20,14 @@ return {
 				-- If the current node is a directory get children status
 				if gs == nil then
 					gs = (node.git_status.dir.direct ~= nil and node.git_status.dir.direct[1])
-						or (node.git_status.dir.indirect ~= nil and node.git_status.dir.indirect[1])
+					    or (node.git_status.dir.indirect ~= nil and node.git_status.dir.indirect[1])
 				end
 
 				-- If the file is untracked, unstaged or partially staged, we stage it
 				if gs == "??" or gs == "MM" or gs == "AM" or gs == " M" then
 					vim.cmd("silent !git add " .. node.absolute_path)
 
-				-- If the file is staged, we unstage
+					-- If the file is staged, we unstage
 				elseif gs == "M " or gs == "A " then
 					vim.cmd("silent !git restore --staged " .. node.absolute_path)
 				end
@@ -66,7 +67,10 @@ return {
 				sorter = "case_sensitive",
 			},
 			view = {
-				width = 30,
+				signcolumn = "yes",
+				width = {
+					max = "25%",
+				},
 			},
 			renderer = {
 				group_empty = true,
@@ -75,6 +79,9 @@ return {
 				dotfiles = true,
 			},
 			update_focused_file = {
+				enable = true,
+			},
+			diagnostics = {
 				enable = true,
 			},
 		})
