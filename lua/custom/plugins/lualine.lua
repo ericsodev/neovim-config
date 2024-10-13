@@ -2,11 +2,45 @@ return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
+		local diff = {
+			"diff",
+			source = function()
+				local gitsigns = vim.b.gitsigns_status_dict
+				if gitsigns then
+					return {
+						added = gitsigns.added,
+						modified = gitsigns.changed,
+						removed = gitsigns.removed,
+					}
+				end
+			end,
+			symbols = {
+				added = " ",
+				modified = " ",
+				removed = " ",
+			},
+			colored = true,
+			always_visible = false,
+		}
+		local diagnostics = {
+			"diagnostics",
+			sources = { "nvim_diagnostic" },
+			sections = { "error", "warn", "info", "hint" },
+			symbols = {
+				error = " ",
+				hint = ' "',
+				info = " ",
+				warn = ' "',
+			},
+			colored = true,
+			update_in_insert = false,
+			always_visible = false,
+		}
 		require("lualine").setup({
 			options = {
 				icons_enabled = true,
 				theme = "auto",
-				component_separators = { left = "", right = "" },
+				component_separators = { left = "", right = "" },
 				section_separators = { left = "", right = "" },
 				disabled_filetypes = {
 					statusline = {},
@@ -14,7 +48,7 @@ return {
 				},
 				ignore_focus = {},
 				always_divide_middle = true,
-				globalstatus = false,
+				globalstatus = true,
 				refresh = {
 					statusline = 1000,
 					tabline = 1000,
@@ -26,8 +60,8 @@ return {
 				lualine_b = { "branch", "diff", "diagnostics" },
 				lualine_c = { "filename" },
 				lualine_x = { "encoding", "fileformat", "filetype" },
-				lualine_y = { "progress" },
-				lualine_z = { "location" },
+				lualine_y = { diff, diagnostics },
+				lualine_z = {},
 			},
 			inactive_sections = {
 				lualine_a = {},
