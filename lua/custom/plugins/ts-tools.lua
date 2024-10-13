@@ -7,6 +7,7 @@ return {
     local lspconfig = require 'lspconfig'
     lspconfig.tsserver.setup {
       autostart = false,
+      enabled = false,
     }
 
     require('typescript-tools').setup {
