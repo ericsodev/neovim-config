@@ -5,7 +5,7 @@ return {
   config = function()
     -- Keep tsserver installed without auto attaching
     local lspconfig = require 'lspconfig'
-    lspconfig.tsserver.setup {
+    lspconfig.ts_ls.setup {
       autostart = false,
       enabled = false,
     }
