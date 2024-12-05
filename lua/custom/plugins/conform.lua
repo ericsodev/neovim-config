@@ -21,7 +21,7 @@ return { -- Autoformat
       scss = { 'prettier' },
       typescript = { 'prettierd', stop_after_first = true },
       svelte = { 'prettierd' },
-      json = { 'prettierd' },
+      json = { 'prettierd', 'prettier', stop_after_first = true },
     },
   },
 }
