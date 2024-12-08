@@ -1,12 +1,7 @@
 -- Set native vim options
-require("vim.defaults")
-require("vim.keybinds")
-require("vim.autocommands")
-
-
-
-
-
+require 'vim.defaults'
+require 'vim.keybinds'
+require 'vim.autocommands'
 
 --
 -- [[ Install `lazy.nvim` plugin manager ]]
@@ -21,8 +16,12 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
-	spec = {
-		{import = "plugins"},
-	}
-})
+require('lazy').setup {
+  spec = {
+    { import = 'plugins' },
+    { import = 'plugins.lsp' },
+  },
+}
+
+-- Themes
+vim.cmd.colorscheme 'rose-pine'
