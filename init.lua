@@ -24,4 +24,4 @@ require('lazy').setup {
 }
 
 -- Themes
-vim.cmd.colorscheme 'rose-pine'
+vim.cmd.colorscheme 'everforest'
