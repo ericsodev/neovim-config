@@ -32,6 +32,6 @@ return {
         },
       },
     }
-    vim.keymap.set('n', 't', ':Neotree toggle<cr>', { desc = '[T]oggle Neotree' })
+    vim.keymap.set('n', '<leader>t', ':Neotree toggle<cr>', { desc = '[T]oggle Neotree' })
   end,
 }
