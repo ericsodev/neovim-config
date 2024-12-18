@@ -173,7 +173,21 @@ return {
       --    https://github.com/pmizio/typescript-tools.nvim
       --
       -- But for many setups, the LSP (`ts_ls`) will work just fine
-      ts_ls = {},
+      ts_ls = {
+        init_options = { hostInfo = 'neovim' },
+        cmd = { 'typescript-language-server', '--stdio' },
+        filetypes = {
+          'javascript',
+          'javascriptreact',
+          'javascript.jsx',
+          'typescript',
+          'typescriptreact',
+          'typescript.tsx',
+          'svelte',
+        },
+        single_file_support = true,
+      },
+      eslint = {},
       --
 
       lua_ls = {
