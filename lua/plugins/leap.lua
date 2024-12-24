@@ -2,7 +2,8 @@ return {
   'ggandor/leap.nvim',
   dependencies = { 'tpope/vim-repeat' },
   config = function()
-    require('leap').create_default_mappings()
+    vim.keymap.set({ 'n', 'x', 'o' }, 'S', '<Plug>(leap-backward)', { desc = 'Leap [S]earch backward' })
+    vim.keymap.set({ 'n', 'x', 'o' }, 's', '<Plug>(leap-forward)', { desc = 'Leap [S]earch forward' })
     -- Define equivalence classes for brackets and quotes, in addition to
     -- the default whitespace group.
     require('leap').opts.equivalence_classes = { ' \t\r\n', '([{', ')]}', '\'"`' }
