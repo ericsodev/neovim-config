@@ -46,6 +46,9 @@ return {
       end,
     }
 
+    local extensions = require 'harpoon.extensions'
+    harpoon:extend(extensions.builtins.command_on_nav "lua require('lualine').refresh()")
+
     -- Toggle previous & next buffers stored within Harpoon list
     -- vim.keymap.set('n', '<C-S-P>', function()
     --   harpoon:list():prev()

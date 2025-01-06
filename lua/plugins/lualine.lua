@@ -22,6 +22,9 @@ return {
       colored = true,
       always_visible = false,
     }
+
+    local harpoon_files = require 'harpoon_files'
+
     local diagnostics = {
       'diagnostics',
       sources = { 'nvim_diagnostic' },
@@ -58,7 +61,7 @@ return {
       sections = {
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diff', 'diagnostics' },
-        lualine_c = { 'filename' },
+        lualine_c = { 'filename', harpoon_files.lualine_component },
         lualine_x = { 'encoding', 'fileformat', 'filetype', 'location' },
         lualine_y = { diff, diagnostics },
         lualine_z = {},
@@ -72,7 +75,14 @@ return {
         lualine_z = {},
       },
       tabline = {},
-      winbar = {},
+      winbar = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {},
+      },
       inactive_winbar = {},
       extensions = {},
     }
