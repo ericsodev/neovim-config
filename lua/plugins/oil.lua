@@ -15,6 +15,8 @@ return {
       keymaps = {
         ['<C-v>'] = { 'actions.select', opts = { vertical = true } },
         ['<C-h>'] = { 'actions.select', opts = { horizontal = true } },
+        ['q'] = { 'actions.close', mode = 'n' },
+        ['<BS>'] = { 'actions.parent', mode = 'n' },
       },
       watch_for_changes = true,
     }
@@ -30,6 +32,6 @@ return {
       end),
     })
 
-    vim.keymap.set('n', '_', require('oil').toggle_float)
+    vim.keymap.set('n', '_', require('oil').open)
   end,
 }
