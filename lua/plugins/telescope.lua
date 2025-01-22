@@ -41,6 +41,10 @@ return { -- Fuzzy Finder (files, lsp, etc)
     -- This opens a window that shows you all of the keymaps for the current
     -- Telescope picker. This is really useful to discover what Telescope can
     -- do as well as how to actually do it!
+    --
+
+    local actions_state = require 'telescope.actions.state'
+    local actions = require 'telescope.actions'
 
     -- [[ Configure Telescope ]]
     -- See `:help telescope` and `:help telescope.setup()`
@@ -53,7 +57,27 @@ return { -- Fuzzy Finder (files, lsp, etc)
       --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
       --   },
       -- },
-      -- pickers = {}
+
+      pickers = {
+        find_files = {
+          mappings = {
+            i = {
+              ['<C-o>'] = function(prompt_bufnr)
+                local selected_entry = actions_state.get_selected_entry()
+
+                local dir_name = vim.fs.dirname(selected_entry.path)
+                print(dir_name)
+
+                require('oil').open(dir_name)
+                actions.close(prompt_bufnr)
+              end,
+            },
+          },
+        },
+      },
+      file_ignore_patterns = {
+        'node%_modules/.*',
+      },
       extensions = {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),
