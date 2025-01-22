@@ -28,6 +28,8 @@ return {
       keymaps = {
         ['<C-v>'] = { 'actions.select', opts = { vertical = true } },
         ['<C-h>'] = { 'actions.select', opts = { horizontal = true } },
+        ['q'] = { 'actions.close', mode = 'n' },
+        ['<BS>'] = { 'actions.parent', mode = 'n' },
       },
       watch_for_changes = true,
       win_options = {
@@ -46,6 +48,6 @@ return {
       end),
     })
 
-    vim.keymap.set('n', '_', '<CMD>Oil<Cr>')
+    vim.keymap.set('n', '_', require('oil').open)
   end,
 }

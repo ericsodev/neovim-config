@@ -1,4 +1,5 @@
 return {
+
   'saghen/blink.cmp',
   -- optional: provides snippets for the snippet source
   -- dependencies = 'rafamadriz/friendly-snippets',
@@ -33,6 +34,7 @@ return {
       nerd_font_variant = 'mono',
     },
     snippets = {
+      preset = 'luasnip',
       expand = function(snippet)
         require('luasnip').lsp_expand(snippet)
       end,
@@ -49,7 +51,7 @@ return {
 
     -- default list of enabled providers defined so that you can extend it elsewhere in your config, without redefining it, via `opts_extend`
     sources = {
-      default = { 'lsp', 'path', 'luasnip', 'buffer' },
+      default = { 'lsp', 'path', 'snippets', 'buffer' },
       -- optionally disable cmdline completions
       -- cmdline = {},
     },
