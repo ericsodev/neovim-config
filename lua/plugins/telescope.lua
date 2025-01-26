@@ -45,32 +45,27 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     local actions_state = require 'telescope.actions.state'
     local actions = require 'telescope.actions'
+    local oil = require 'oil'
 
-    -- [[ Configure Telescope ]]
-    -- See `:help telescope` and `:help telescope.setup()`
+    function open_current_with_oil(prompt_bufnr)
+      local selected_entry = actions_state.get_selected_entry()
+
+      local dir_name = vim.fs.dirname(selected_entry.path)
+      print(dir_name)
+
+      actions.close(prompt_bufnr)
+      oil.open(dir_name)
+    end
+
     require('telescope').setup {
-      -- You can put your default mappings / updates / etc. in here
-      --  All the info you're looking for is in `:help telescope.setup()`
-      --
-      -- defaults = {
-      --   mappings = {
-      --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-      --   },
-      -- },
-
       pickers = {
         find_files = {
           mappings = {
             i = {
-              ['<C-o>'] = function(prompt_bufnr)
-                local selected_entry = actions_state.get_selected_entry()
-
-                local dir_name = vim.fs.dirname(selected_entry.path)
-                print(dir_name)
-
-                require('oil').open(dir_name)
-                actions.close(prompt_bufnr)
-              end,
+              ['<C-o>'] = open_current_with_oil,
+            },
+            n = {
+              ['o'] = open_current_with_oil,
             },
           },
         },
