@@ -41,13 +41,16 @@ return { -- Fuzzy Finder (files, lsp, etc)
     -- This opens a window that shows you all of the keymaps for the current
     -- Telescope picker. This is really useful to discover what Telescope can
     -- do as well as how to actually do it!
-    --
+
+    local pickers = require 'telescope.pickers'
+    local finders = require 'telescope.finders'
+    local conf = require('telescope.config').values
 
     local actions_state = require 'telescope.actions.state'
     local actions = require 'telescope.actions'
     local oil = require 'oil'
 
-    function open_current_with_oil(prompt_bufnr)
+    local function open_current_with_oil(prompt_bufnr)
       local selected_entry = actions_state.get_selected_entry()
 
       local dir_name = vim.fs.dirname(selected_entry.path)
@@ -95,7 +98,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
     vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
     vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-    vim.keymap.set('n', '<leader>sc', builtin.colorscheme, { desc = '[S]earch [C]olorschemes' })
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
     -- Slightly advanced example of overriding default behavior and theme
@@ -115,10 +117,5 @@ return { -- Fuzzy Finder (files, lsp, etc)
         prompt_title = 'Live Grep in Open Files',
       }
     end, { desc = '[S]earch [/] in Open Files' })
-
-    -- Shortcut for searching your Neovim configuration files
-    vim.keymap.set('n', '<leader>sn', function()
-      builtin.find_files { cwd = vim.fn.stdpath 'config' }
-    end, { desc = '[S]earch [N]eovim files' })
   end,
 }

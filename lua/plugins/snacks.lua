@@ -54,7 +54,7 @@ return {
     words = { enabled = false },
   },
 
-  init = function()
+  config = function()
     local snacks = require 'snacks'
     vim.keymap.set('n', '<leader>;sd', function()
       if snacks.dim.enabled then
@@ -63,5 +63,7 @@ return {
         snacks.dim.enable()
       end
     end, { desc = '[S]nacks [D]im' })
+
+    vim.keymap.set('n', '<leader>sc', snacks.picker.colorschemes, { desc = '[S]earch [C]olorschemes' })
   end,
 }
