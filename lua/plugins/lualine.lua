@@ -53,7 +53,7 @@ return {
         warn = ' ',
       },
       colored = true,
-      update_in_insert = false,
+      update_in_insert = true,
       always_visible = false,
     }
     require('lualine').setup {
@@ -70,7 +70,7 @@ return {
         always_divide_middle = true,
         globalstatus = true,
         refresh = {
-          statusline = 600,
+          statusline = 300,
           tabline = 600,
           winbar = 600,
         },
