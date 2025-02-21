@@ -32,9 +32,9 @@ return {
         end
       end,
       symbols = {
-        added = ' ',
-        modified = ' ',
-        removed = ' ',
+        added = '  ',
+        modified = '  ',
+        removed = '  ',
       },
       colored = true,
       always_visible = false,
@@ -77,8 +77,8 @@ return {
       },
       sections = {
         lualine_a = { 'mode' },
-        lualine_b = { { 'branch', fmt = trunc(10000000, 32, 0, false) }, 'diff', 'diagnostics' },
-        lualine_c = { 'filename', harpoon_files.lualine_component },
+        lualine_b = { { 'branch', fmt = trunc(10000000, 32, 0, false) } },
+        lualine_c = { '%=', 'filename' },
         lualine_x = { 'encoding', 'fileformat', 'filetype', 'location' },
         lualine_y = { diff, diagnostics },
         lualine_z = {},
