@@ -1,8 +1,10 @@
 return {
 
   'saghen/blink.cmp',
+  ---@module 'blink.cmp'
   -- optional: provides snippets for the snippet source
   -- dependencies = 'rafamadriz/friendly-snippets',
+
   dependencies = { 'L3MON4D3/LuaSnip', version = 'v2.*' },
 
   -- use a release tag to download pre-built binaries
@@ -35,23 +37,19 @@ return {
     },
     snippets = {
       preset = 'luasnip',
-      expand = function(snippet)
-        require('luasnip').lsp_expand(snippet)
-      end,
+      expand = function(snippet) require('luasnip').lsp_expand(snippet) end,
       active = function(filter)
         if filter and filter.direction then
           return require('luasnip').jumpable(filter.direction)
         end
         return require('luasnip').in_snippet()
       end,
-      jump = function(direction)
-        require('luasnip').jump(direction)
-      end,
+      jump = function(direction) require('luasnip').jump(direction) end,
     },
 
     -- default list of enabled providers defined so that you can extend it elsewhere in your config, without redefining it, via `opts_extend`
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer' },
+      default = { 'lsp', 'snippets', 'buffer' },
       -- optionally disable cmdline completions
       -- cmdline = {},
     },
@@ -62,29 +60,19 @@ return {
           components = {
             kind_icon = {
               ellipsis = false,
-              text = function(ctx)
-                return ctx.kind_icon .. ctx.icon_gap
-              end,
-              highlight = function(ctx)
-                return require('blink.cmp.completion.windows.render.tailwind').get_hl(ctx) or 'BlinkCmpKind' .. ctx.kind
-              end,
+              text = function(ctx) return ctx.kind_icon .. ctx.icon_gap end,
+              highlight = function(ctx) return require('blink.cmp.completion.windows.render.tailwind').get_hl(ctx) or 'BlinkCmpKind' .. ctx.kind end,
             },
 
             kind = {
               ellipsis = false,
               width = { fill = true },
-              text = function(ctx)
-                return ctx.kind
-              end,
-              highlight = function(ctx)
-                return require('blink.cmp.completion.windows.render.tailwind').get_hl(ctx) or 'BlinkCmpKind' .. ctx.kind
-              end,
+              text = function(ctx) return ctx.kind end,
+              highlight = function(ctx) return require('blink.cmp.completion.windows.render.tailwind').get_hl(ctx) or 'BlinkCmpKind' .. ctx.kind end,
             },
             label = {
               width = { fill = true, max = 45 },
-              text = function(ctx)
-                return ctx.label .. ctx.label_detail
-              end,
+              text = function(ctx) return ctx.label .. ctx.label_detail end,
               highlight = function(ctx)
                 -- label and label details
                 local highlights = {
@@ -104,18 +92,14 @@ return {
             },
             label_description = {
               width = { max = 30 },
-              text = function(ctx)
-                return ctx.label_description
-              end,
+              text = function(ctx) return ctx.label_description end,
               highlight = 'BlinkCmpLabelDescription',
             },
 
             source_name = {
               width = { max = 30 },
               -- source_name or source_id are supported
-              text = function(ctx)
-                return ctx.source_name
-              end,
+              text = function(ctx) return ctx.source_name end,
               highlight = 'BlinkCmpSource',
             },
           },
