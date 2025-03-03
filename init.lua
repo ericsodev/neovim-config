@@ -2,6 +2,7 @@
 require 'vim.defaults'
 require 'vim.keybinds'
 require 'vim.autocommands'
+require 'vim.filetypes'
 
 --
 -- [[ Install `lazy.nvim` plugin manager ]]
