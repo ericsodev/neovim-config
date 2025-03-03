@@ -55,6 +55,7 @@ return {
     },
     completion = {
       menu = {
+        border = 'padded',
         draw = {
           columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 }, { 'kind', 'source_name', gap = 1 } },
           components = {
@@ -107,9 +108,9 @@ return {
       },
       documentation = {
         -- Controls whether the documentation window will automatically show when selecting a completion item
-        auto_show = false,
+        auto_show = true,
         -- Delay before showing the documentation window
-        auto_show_delay_ms = 150,
+        auto_show_delay_ms = 250,
         -- Delay before updating the documentation window when selecting a new item,
         -- while an existing item is still visible
         update_delay_ms = 50,
